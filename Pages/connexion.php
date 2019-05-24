@@ -4,10 +4,10 @@ class Connexion
 {
  private static $instance = null;
   private $conn;
-  private $host = '192.168.110.111';
-  private $user = 'info';
-  private $pass = 'iut2019';
-  private $name = 'AccesGb';
+  private $host = '';
+  private $user = '';
+  private $pass = '';
+  private $name = '';
 	
 	private function __construct()
   {
