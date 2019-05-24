@@ -1,0 +1,168 @@
+body{
+	 background-color: #808080;
+}
+.formulaire {
+    max-width: 475px;
+	/*min-height: 370px;
+	max-height: 370;*/
+    /*margin: auto auto;
+    /*padding:0 0 30px 0;
+    /* la couleur de fond */
+    /*color: #008080;*/
+   background: -moz-linear-gradient(top, #DDDAD2 0%, #9B917B 100%);
+	/*background: -moz-linear-gradient(top, #9B917B 0%, #DDDAD2 100%);*/
+    background: -webkit-gradient(linear, left bottom, left top, color-stop(0%,#DDDAD2), color-stop(100%,#9B917B));
+    /* l'ombre portée */
+    box-shadow: 0px 0px 8px #444;
+	
+	/*width: 100%;*/  
+ /* height: 100%;*/
+ /* background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;*/
+   
+}
+
+.formulaire h1 {
+    /* les styles de caractères */
+    font-size: 25px;
+    font-weight:200;
+    text-align: center;
+    text-shadow: 0px 1px 0px #f2f2f2;
+    /* les marges et bordures */
+    padding:20px;
+    margin: 0 0 30px 0;
+    border-bottom:1px solid #777879;
+    /* la couleur de fond */
+    background: #BFB9B0;
+    background: -moz-linear-gradient(top, #BFB9B0 0%, #847A6C 100%);
+   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#BFB9B0), color-stop(100%,#847A6C));
+}
+.formulaire h1 strong{
+    color: #FFFFFF;
+}
+fieldset{
+	margin:0 2px;
+}
+
+label {
+    /* le positionnement, la marge et la taille */
+	float:left;
+    margin: 10px 3px -12px 0px;
+    width: 90px;
+    /* les styles de caractères */
+    font-size: 14px;
+    color: #445668;
+    text-shadow: 0px 1px 0px #f2f2f2;
+    text-align: right;
+}
+
+input {
+    /* les styles de caractères */
+    font-size: 14px;
+    color: #4b4b4b;
+    text-shadow: 0px 0px 0px #e8eade;
+    /* la marge, la taille et l'ombre portée */
+    width: 275px;
+    height: 20px;
+    padding: 0 10px 0px 10px;
+    margin: 5px 0 20px 0;
+    box-shadow: 0px 0px 0px #f2f2f2;
+    /* la couleur de fond */
+    background: #f1f2f4;
+    background: -moz-linear-gradient(top, #f1f2f4 0%, #f8f9fb 20%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f1f2f4), color-stop(20%,#f8f9fb));
+    /* les bordures */
+    border:1px solid #b6b7b9;
+    border-radius: 5px;
+    
+}
+input::-webkit-input-placeholder  {
+    color: #BBBCB6;;
+    text-shadow: 0px -1px 0px #38506b;
+}
+input::-moz-placeholder {
+    color: #9F9F9E;
+    text-shadow: 1.9px 0.5px 0px #38506b;
+}
+
+input:focus, textarea:focus {
+    background: #d9dadc;
+    background: -moz-linear-gradient(top, #adafb2 0%, #bec0c3 20%); /* firefox */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(#adafb2), color-stop(20%,#bec0c3)); 
+    box-shadow: 0px 0px 5px #d5d6d8;
+    
+}
+
+input[type=submit] {
+    /* la position, la taille et les marges */
+    float: right;
+    cursor: pointer;
+    width: 160px;
+    height: 35px;
+    padding: 5px 10px;
+    margin: 0 40px 0 0;
+    /* les coins arrondis */
+    border: 1px solid #5C5441;
+    border-radius: 50px;
+    
+    /* le dégradé de fond */
+    background: -moz-linear-gradient(top, #ABA396 0%, #A8A099 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ABA396), color-stop(100%,#A8A099));
+    /* l'ombre portée */
+    box-shadow: 0px 0px 5px #999;
+  
+    /* les styles de texte */
+    color:#ffffff;
+    text-shadow:1px -1px 0px #43708f;
+    font-weight:bold;
+}
+input[type=submit]:hover {
+    border: 1px solid #5C5441;
+    background: -moz-linear-gradient(top, #C0BBAD 0%, #B0A997 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#C0BBAD), color-stop(100%,#B0A997));
+}
+input[type=submit]:active {
+    box-shadow: 0px -1px 5px #999;
+    background: -moz-linear-gradient(top, #E7E3DC 0%, #A8A099 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#E7E3DC), color-stop(100%,#A8A099));
+}
+
+.container{
+  /*height: 100%;*/ 
+  /*max-height: 145vh;*/
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /*align-items: center;*/
+  padding: 15px;
+  background: rgba(128,128,128,0.8);
+}
+.contactbtn{
+	margin-top: 15px;
+	margin-left: 5px;
+	margin-bottom: 15px;
+}
+
+@media (max-width: 576px) {
+  .container {
+    padding: 72px 15px 65px 15px;
+  }
+	label {
+		margin-bottom: 5px;
+	}
+	
+}
+
+@media (min-width: 100px) {
+  .container {
+    padding: 72px 15px 65px 15px;
+  }
+	
+}
+
+	
