@@ -8,9 +8,9 @@ require('sections/head.php');
 if(isset($_GET['page'])) {
     $page = $_GET['page'];		
 	require('sections/nav.php');
+	require('Pages/sessstart.php');
 	
-	if($page=='presentation'){
-	   require('Pages/sessstart.php');
+	if($page=='presentation'){	   
        require('Pages/controllers.php');
        require('Pages/presentation.php');
 		$ct= new Controleur();
