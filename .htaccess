@@ -4,7 +4,7 @@ RewriteEngine on
 
 RewriteRule ^accueil$ index.php [L]
 RewriteRule ^presentation$ index.php?page=presentation [L]
-RewriteRule ^enregistrement$ index.php?page=formulaire [L]
+RewriteRule ^enregistrement$ index.php?page=enregistrement [L]
 RewriteRule ^authentification$ Pages/formulaireIdentif.php [L]
 RewriteRule ^aide$ Pages/aide.php [L]
 RewriteRule ^mpo$ Pages/MotPassOublie.php [L]

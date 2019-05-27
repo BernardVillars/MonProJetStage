@@ -81,7 +81,7 @@ class Controleur
 
 		//Si le mot de passe associer à son login existe
 		if($resu>0){
-			//Rediriger vers une la page formPrincipal	
+			//Rediriger versla page formPrincipal	
 			header('Location:'.$this->root.'enregistrement');
 		
 		}else{
@@ -105,7 +105,7 @@ class Controleur
 
 			$psw=uniqid('', false);
 
-			$url="http://192.168.110.111/accesGb/Pages/changerMotPasse.php";
+			$url="http://localhost/accesGb/Pages/changerMotPasse.php";
 
 			if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $mail)) // On filtre les serveurs qui rencontrent des bogues.
 			{
@@ -131,10 +131,8 @@ class Controleur
 			//=========
 
 			//=====Création du header de l'e-mail.
-			////$header = "From: \"Bernard\"<bernardv52@gmail.com>".$passage_ligne;
-			////$header.= "Reply-to: \"Bernard\" <bernardv52@gmail.com>".$passage_ligne;
-			$header = "From: \"SiteGb\"<domaine.com>".$passage_ligne;
-			$header.= "Reply-to: \"SiteGb\" <domaine.com>".$passage_ligne;
+			$header = "From: \"Bernard\"<bernardv52@gmail.com>".$passage_ligne;
+			$header.= "Reply-to: \"Bernard\" <bernardv52@gmail.com>".$passage_ligne;
 			$header.= "MIME-Version: 1.0".$passage_ligne;
 			$header.= "Content-Type: multipart/alternative;".$passage_ligne." boundary=\"$boundary\"".$passage_ligne;
 			//=====Création du message.
@@ -194,10 +192,10 @@ public function changer_pwd($posts)
 				{
 				//Verification existence du login et son mot de passe sur la base de données
 				$resu=$obc->get_cnt_line_psw($login,$ach);
-
+ 
 				//Si le mot de passe associer à son login existe
 				if($resu>0){
-
+   
 				$ach= hash("sha256",$newmdp);
 				$resu2=$obc->update_psw($ach,$email,$login);
 				if($resu2){
@@ -221,7 +219,7 @@ $img_nom="";
 	if($this->transfert($img_nom)){
 
          $obc=$this->objetconnexion;
-            //$nomImg=$_FILES['fich']['name'];
+            
             $img_chemin="images/imgUpload/". $img_nom;
 
 			$obc->enregistreCheminPhoto($img_chemin);
@@ -272,7 +270,7 @@ function formatDate($txt){
  
     //En dessous, il y a l'expression régulière qui remplace tout ce qui n'est pas une lettre non accentuées ou un chiffre
     //dans $fichier par un tiret "-" et qui place le résultat dans $img_nom.
-     $img_nom = preg_replace('/([^.a-z0-9]+)/i', '-', $img_nom);
+     $img_nom = preg_replace('/([^.a-z0-9]+)/i', '_', $img_nom);
      $img_blob= file_get_contents($_FILES['fich']['tmp_name']); 
      $ret=is_uploaded_file($_FILES['fich']['tmp_name']);
 

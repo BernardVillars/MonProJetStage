@@ -1,16 +1,16 @@
 <?php
+
 $root ="/accesGb/";
 
 require('sections/head.php');
 
 
 if(isset($_GET['page'])) {
-    $page = $_GET['page'];
-	
+    $page = $_GET['page'];		
 	require('sections/nav.php');
 	
 	if($page=='presentation'){
-		require('Pages/sessstart.php');	
+	   require('Pages/sessstart.php');
        require('Pages/controllers.php');
        require('Pages/presentation.php');
 		$ct= new Controleur();
@@ -31,8 +31,23 @@ if(isset($_POST['envoi'])) {
 	                    
 }
     }
-if($page=='formulaire'){
-	
+if($page=='enregistrement'){
+	$cookiename="ticket";
+$ticket=session_id().microtime().rand(0,9999999999);
+$ticket=hash('sha512',$ticket);
+setcookie($cookiename,$ticket,time()+(60*20));
+$_SESSION['ticket']=$ticket;
+
+if(isset($_COOKIE['ticket'])==$_SESSION['ticket']){
+    $ticket=session_id().microtime().rand(0,9999999999);
+    $ticket=hash('sha512',$ticket);
+    $_COOKIE['ticket']=$ticket;
+    $_SESSION['ticket']=$ticket;
+    }else{
+    $_SESSION=array();
+    session_destroy();
+    header('location:accueil');
+}
 	require('Pages/controllers.php');
     require('Pages/formPrincipal.php');
 	$res;
@@ -49,7 +64,7 @@ if($page=='formulaire'){
 }
 
 }else{
-	$page="";
+
    require('sections/nav.php');
    require('Pages/accueil.php');
 	
