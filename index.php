@@ -72,8 +72,8 @@
 			//$nip = substr($nip,1);
 			//var_dump($nip);
 			// Login information of a scodoc user that can access notes
-			//$sco_user = 'z91800316';
-			//$sco_pw = 'Laura66Belasco!!';
+			//$sco_user = '';
+			//$sco_pw = '';
 				
 			//$sco_url = 'https://scodoc.iut.univ-perp.fr/ScoDoc/';
 			  $sco_url = 'http://192.168.110.111'.$this->root.'presentation';
