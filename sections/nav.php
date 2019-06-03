@@ -14,21 +14,36 @@
 					?>
                     <li class="hidden"><a href=""></a></li>
                     <li><a class="page-scroll" href="accueil">Accueil</a></li>
-                    <li><a class="page-scroll" href="">Photos</a></li>
+                    <li><a class="page-scroll" href="">Autres</a></li>
                     <li><a class="page-scroll" href=""></a></li>
                     <li><a class="page-scroll" href=""></a></li>
                      <?php
-                  }
-                 
-				if($page=="formulaire"){
+                  }			 
+					
+				if($page=="enregistrement"){
+					
+					if(isset($_GET['valeur'])){
+					 
 					?>
                     <li class="hidden"><a href=""></a></li>
-                    <li><a class="page-scroll" href="accueil">Accueil</a></li>
-                    <li><a class="page-scroll" href="">Video</a></li>
+                    <li><a class="page-scroll" href="<?php echo $root.'enregistrement'?>">Retour</a></li>
+                    <li><a class="page-scroll" href="<?php echo $root?>">Accueil</a></li>
                     <li><a class="page-scroll" href=""></a></li>
                     <li><a class="page-scroll" href=""></a></li>
                     <?php
+             
+				 }
+					else{
+					?>
+                    <li class="hidden"><a href=""></a></li>
+                    <li><a class="page-scroll" href="accueil">Accueil</a></li>
+                    <li><a class="page-scroll" href="">Autres</a></li>
+                    <li><a class="page-scroll" href=""></a></li>
+                    <li><a class="page-scroll" href=""></a></li>
+                    <?php
+					}
                   }
+				
 				}
 				
                else{

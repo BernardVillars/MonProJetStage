@@ -7,23 +7,26 @@
 	
 <link rel="stylesheet" type="text/css" href="Formulaires/MdpOubli/css/main.css">	
 	<script src="Js/gen_validatorv4.js" type="text/javascript"></script>
+	<script type="text/javascript" src="Js/fonctions.js"></script>
 </head>
 <body>
 
 	
   <?php	
+	
+	session_start();
 	$root ="/accesGb/";
 	require('sessstart.php');
 	require('controllers.php');
 	
 if (isset($_SESSION['mpo'])){
 	if($_SESSION['mpo']==1){
-	echo '<script type="text/javascript"> alert("Nous vous avons envoyé un nouveau mot de passe !!");</script>';
+	echo '<script>EnvoiNewMp()</script>';
 		
 	}
 	
 	if($_SESSION['mpo']==0){
-	echo '<script type="text/javascript"> alert("Ces identifiants ne correspondent à aucun compte !\n\nVous pouvez en créer un sur la page précédente.")</script>';
+	echo '<script>IdentNoExist()</script>';
 		
 	}
 	unset($_SESSION['mpo']);

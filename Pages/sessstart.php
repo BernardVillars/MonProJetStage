@@ -1,32 +1,24 @@
- <?php
-session_start();	
-
-if(!empty($_POST))
-{
+<?php
+//session_start();
+if(! empty($_POST)) {
     $_SESSION['sauvegarde'] = $_POST ;
-    $_SESSION['sauvefile'] = $_FILES ;
+    $_SESSION['sauvefile'] = $_FILES;
     $fichierActuel = $_SERVER['PHP_SELF'];
 	
-    if(!empty($_SERVER['QUERY_STRING']))
-    {
-		if($_SERVER['QUERY_STRING']=="page=".$page){
+    if(!empty($_SERVER['QUERY_STRING'])) {
+		//if($_SERVER['QUERY_STRING']=="page=".$page){
 			$fichierActuel = $root.$page;
-		}
-			
+		//}
     }
    
-    header('Location: ' . $fichierActuel);
-	
+    header('Location: ' . $fichierActuel);	
     exit;
 }
 
-if(isset($_SESSION['sauvegarde']))
-{
+if(isset($_SESSION['sauvegarde'])) {
     $_POST = $_SESSION['sauvegarde'];
-    $_FILES['fich'] = $_SESSION['sauvefile'];
+    $_FILES = $_SESSION['sauvefile'];
     unset($_SESSION['sauvegarde']);
 	unset($_SESSION['sauvefile']);
 }
-	
-
 ?> 

@@ -1,13 +1,5 @@
 <?php
 require('connexion.php');
-echo'<script type="text/javascript">
-	
-	function InfoUpdPsw1()
-	 {
-		alert("Vos nouvelles données ont été enregistrées !!");
-        }
-	
-	</script>';
 
 class Controleur
 {
@@ -43,25 +35,25 @@ class Controleur
 						  $resultat=$obc->load_User($login,$email,$ach);
 						  if($resultat)
 							  {
-								  echo'<script type="text/javascript">alert("Votre compte a bien été créé !!");</script>';
+								  echo'<script>Comptecree()</script>';
 								  			                
 							  }
 
 							  else
 							  {
-								 echo'<script type="text/javascript">alert("Votre compte n\' a pas été créé !!");</script>';						  
+								 echo'<script>ComptePascree()</script>';						  
 								  
 							  }
 
 				  }
-						  else{
-							  echo '<script type="text/javascript"> alert("Veuillez reconfirmer votre mot de passe svp !")</script>';
+				  else{
+					  echo '<script>ConfirmPass()</script>';
 
-						  }
-			 }
-					  else{
-						  echo '<script type="text/javascript"> alert("Ces identifiants existent déja !")</script>';
-					  }
+				  }
+			  }
+			  else{
+				  echo '<script>IdentExist()</script>';
+			  }
 
 		 }
 	}
@@ -81,11 +73,22 @@ class Controleur
 
 		//Si le mot de passe associer à son login existe
 		if($resu>0){
+			
+			$idUser=$obc->get_id_user($login);
+			$droit=$obc->get_droit_user($idUser);
+			
+			if($droit==1){
+			$_SESSION['accepter']=true;
 			//Rediriger versla page formPrincipal	
 			header('Location:'.$this->root.'enregistrement');
+			}
+			else{
+				$_SESSION['authentification']=1;
+				header('Location:'.$this->root.'accueil');
+			}
 		
 		}else{
-			$_SESSION['authentification']=1;
+			$_SESSION['authentif']=1;
 		header('Location:'.$this->root.'authentification');
 	
 		}
@@ -105,8 +108,9 @@ class Controleur
 
 			$psw=uniqid('', false);
 
-			$url="http://localhost/accesGb/Pages/changerMotPasse.php";
-
+			//$url="http://localhost/accesGb/Pages/changerMotPasse.php";
+			$url="http://192.168.110.111".$this->root."chmp";
+				
 			if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $mail)) // On filtre les serveurs qui rencontrent des bogues.
 			{
 				$passage_ligne = "\r\n";
@@ -131,8 +135,8 @@ class Controleur
 			//=========
 
 			//=====Création du header de l'e-mail.
-			$header = "From: \"Bernard\"<bernardv52@gmail.com>".$passage_ligne;
-			$header.= "Reply-to: \"Bernard\" <bernardv52@gmail.com>".$passage_ligne;
+			$header = "From: \"SiteGB\"<bdd@univ-perp.fr>".$passage_ligne;
+			$header.= "Reply-to: \"\" <>".$passage_ligne;
 			$header.= "MIME-Version: 1.0".$passage_ligne;
 			$header.= "Content-Type: multipart/alternative;".$passage_ligne." boundary=\"$boundary\"".$passage_ligne;
 			//=====Création du message.
@@ -153,7 +157,7 @@ class Controleur
 			//==========
 
 			//=====Envoi de l'e-mail.
-			ini_set("SMTP", "smtp.gmail.com");
+			ini_set("SMTP", "smtp.univ-perp.fr");
 
 			mail($mail,$sujet,$message,$header);
 
@@ -179,7 +183,7 @@ public function changer_pwd($posts)
 {
 	$obc=$this->objetconnexion;
 
-		if(!empty($posts['login'])&&!empty($posts['email'])&&!empty($posts['oldmdp'])&&!empty($posts['newmdp'])&&!empty($posts['confmdp'])){
+	$resu2;	if(!empty($posts['login'])&&!empty($posts['email'])&&!empty($posts['oldmdp'])&&!empty($posts['newmdp'])&&!empty($posts['confmdp'])){
 
 			$login=$posts['login'];
 			$email=$posts['email'];
@@ -188,28 +192,42 @@ public function changer_pwd($posts)
 			$newmdp=$posts['newmdp'];
 			$confmdp=$posts['confmdp'];
          // Si le mot de passe et sa confirmation sont identiques.
-			 if($newmdp==$confmdp)
-				{
+		 if($newmdp==$confmdp)
+			{
 				//Verification existence du login et son mot de passe sur la base de données
 				$resu=$obc->get_cnt_line_psw($login,$ach);
- 
 				//Si le mot de passe associer à son login existe
-				if($resu>0){
+			if($resu>0){
    
 				$ach= hash("sha256",$newmdp);
 				$resu2=$obc->update_psw($ach,$email,$login);
-				if($resu2){
-					echo'<script>InfoUpdPsw1()</script>';
+				
+				if($resu2>0){
+					
+					$_SESSION['changpass']=1;
+					//Rediriger vers la même page 
+			         header('Location:'.$this->root.'chmp');
+					}
+					else{
+						
+						$_SESSION['changpass']=2;
+					//Rediriger vers la même page 
+			         header('Location:'.$this->root.'chmp');
 					}
 
-				}
-				else{
-				echo '<script type="text/javascript"> alert("Il n\' y a pas de compte répertorié avec ces identifiants !\n\nLe mot de passe à renseigner est celui qui vous a été envoyé par mail.")</script>';
-				}
-		}
+			}
+			else{
+				$_SESSION['changpass']=0;
+				//Rediriger vers la même page 
+				 header('Location:'.$this->root.'chmp');
 
-		else{
-			echo '<script type="text/javascript"> alert("Veuillez confirmer votre nouveau mot de passe svp !")</script>';
+			}
+		   }
+
+		  else{
+			$_SESSION['changpass']=3;
+			//Rediriger vers la même page 
+			   header('Location:'.$this->root.'chmp');		
 		    }
      }
   }

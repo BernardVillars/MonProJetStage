@@ -8,7 +8,8 @@ RewriteRule ^enregistrement$ index.php?page=enregistrement [L]
 RewriteRule ^authentification$ Pages/formulaireIdentif.php [L]
 RewriteRule ^aide$ Pages/aide.php [L]
 RewriteRule ^mpo$ Pages/MotPassOublie.php [L]
-
+RewriteRule ^chmp$ Pages/changerMotPasse.php [L]
+RewriteRule ^enregistrement/(.*)$ index.php?page=enregistrement&valeur=$1 [L]
 
 
 

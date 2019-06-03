@@ -3,15 +3,37 @@
 <head>
 <meta charset="utf-8" />
 <title>Formulaire d'accès</title>
-<link href="../Formulaires/Identification/styles.css" rel="stylesheet" type="text/css" media="screen" />
-<script src="../Js/gen_validatorv4.js" type="text/javascript"></script>
+<link href="Formulaires/Identification/styles.css" rel="stylesheet" type="text/css" media="screen" />
+<script src="Js/gen_validatorv4.js" type="text/javascript"></script>
+<script type="text/javascript" src="Js/fonctions.js"></script>
 </head>
 
 <body>
  <?php	
+	session_start();
 	$root ="/accesGb/";
 	require('sessstart.php');
 	require('controllers.php');
+	
+	if (isset($_SESSION['changpass'])){
+		
+	if($_SESSION['changpass']==1){
+		echo'<script>InfoUpdPsw()</script>';
+	
+	}
+		
+	if($_SESSION['changpass']==2){
+		echo'<script>InfoNonUpdPsw()</script>';
+	
+	}
+	if($_SESSION['changpass']==0){
+	   echo '<script>CompteRepertorie()</script>';
+	}
+	if($_SESSION['changpass']==3){
+		echo '<script>ConfirmPass()</script>';
+	}
+		unset($_SESSION['changpass']);
+	}
 	
 $ct= new Controleur();	
    if(isset($_POST['envoy'])) {
@@ -25,7 +47,7 @@ $ct= new Controleur();
   <div class="container">
 <article class="formulaire">
 	<h1>Changement de mot de passe</h1>
-	<form name="chgmp" action="#" method="post">
+	<form name="chgmp" action="" method="post">
 		<fieldset>
 		
 			<label for="login">Login :</label>

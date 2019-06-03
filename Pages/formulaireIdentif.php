@@ -1,13 +1,3 @@
-<?php
-require('sessstart.php');
-require('controllers.php');
-if (isset($_SESSION['authentification'])){
-	if($_SESSION['authentification']==1){
-	echo '<script type="text/javascript"> alert("Il n\' y a pas de compte créé avec ces identifiants !\n\nVous pouvez en créer un sur la page précédente.")</script>';
-		unset($_SESSION['authentification']);
-	}
-	}
-?>
 
 <!DOCTYPE html>
 <html>
@@ -16,9 +6,23 @@ if (isset($_SESSION['authentification'])){
 <title>Formulaire d'accès</title>
 <link href="Formulaires/Identification/styles.css" rel="stylesheet" type="text/css" media="screen" />
 <script src="Js/gen_validatorv4.js" type="text/javascript"></script>
+<script type="text/javascript" src="Js/fonctions.js"></script>
 </head>
+<body>
+<?php
+session_start();
+require('sessstart.php');
+require('controllers.php');
 
-
+if (isset($_SESSION['authentif'])){
+	if($_SESSION['authentif']==1){
+	echo '<script>Authentif()</script>';
+		
+	}
+	
+	unset($_SESSION['authentif']);
+	}
+?>
 <script type="text/javascript"> 
 	 function openInfo()
 	 {
@@ -70,6 +74,6 @@ if (isset($_SESSION['authentification'])){
    }
 
 	?>
-
+</body>
 </html>
 		

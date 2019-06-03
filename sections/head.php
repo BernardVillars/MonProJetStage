@@ -11,5 +11,6 @@
 <link rel="stylesheet" type="text/css" href="css/bootstrat.css">
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <script src="Js/gen_validatorv4.js" type="text/javascript"></script>
+<script type="text/javascript" src="Js/fonctions.js"></script>;
 </head>
 <body>
